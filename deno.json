@@ -1,0 +1,17 @@
+{
+    "tasks": {
+      "deploy-woodsprite": "deployctl deploy --prod --project=jbakse-woodsprite ./woodsprite/woodsprite.js",
+      "deploy-cooking": "deployctl deploy --prod --project=paridhi-cooking ./web_app_final/web_app_finalised.js",
+      "deploy-human-machine": "deployctl deploy --prod --project=paridhi-ars ./human_machines/humans_machines.js",
+      "deploy-timeline": "deployctl deploy --prod --project=jbakse-timeline ./timeline/timeline.js"
+    },
+    "deploy": {
+      "project": "16569076-af30-4989-9e78-fb1dcd22a857",
+      "exclude": [
+        "**/node_modules"
+      ],
+      "include": [],
+      "entrypoint": "web_app_final/web_final_wip.js"
+    }
+  }
+  
