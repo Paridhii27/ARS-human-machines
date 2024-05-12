@@ -1,7 +1,6 @@
 {
-    "tasks": {
-      "start": "deno run --allow-env --allow-net --allow-read=../.. humans_machines.js",
-      "dev": "deno run --allow-env --allow-net --allow-read=../.. --watch --no-clear-screen humans_machines.js"
-    }
+  "tasks": {
+    "start": "deno run --allow-env --allow-net --allow-read=../.. interface.js",
+    "dev": "deno run --allow-env --allow-net --allow-read=../.. --watch --no-clear-screen interface.js"
   }
-  
+}

@@ -1,13 +1,45 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Silkscreen&display=swap");
 
+@font-face {
+  font-family: "Pangaia Ultralight";
+  src: url("./assets/font/PPPangaia-Ultralight.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Pangaia Bold";
+  src: url("./assets/font/PPPangaia-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Glare Bold";
+  src: url("./assets/font/PPFragment-GlareExtraBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Playground Med";
+  src: url("./assets/font/PPPlayground-Medium.otf") format("opentype");
+}
+
+* {
+  border: 1px solid rgb(230, 74, 74);
+}
+
 .rubik-glitch-regular {
   font-family: "Rubik Glitch", system-ui;
   font-weight: 400;
   font-style: normal;
 }
 body {
-  background-color: #151515;
+  background-color: #0e0e0e;
   color: white;
+}
+
+.main-container h1 {
+  font-size: 2em;
+  font-family: "Glare Bold";
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(248, 245, 245);
+  text-shadow: 1px rgb(248, 246, 246);
 }
 
 button {
@@ -18,7 +50,7 @@ button {
 .main-container {
   margin: 5%;
 }
-.functionality-container {
+.main-container {
   display: flex;
 }
 .user-inputs {
@@ -43,43 +75,80 @@ button {
   margin: 2%;
 }
 
+#prompt {
+  word-wrap: break-word;
+}
+
 #dalle {
   border: 2px solid;
-  border-color: #04aa6d;
+  border-color: #92d2ea;
   border-radius: 5px;
   box-shadow: 2px;
 }
 
 #dalle:hover {
   border: 2px solid;
-  border-color: #04aa6d;
-  background-color: #04aa6d;
+  border-color: #92d2ea;
+  color: #92d2ea;
+  background-color: #d8eff7;
   border-radius: 5px;
   box-shadow: 2px;
 }
 
 #fal {
   border: 2px solid;
-  border-color: #04aa6d;
+  border-color: #1b97a1;
+  border-radius: 5px;
+  box-shadow: 2px;
+}
+
+#fal:hover {
+  border: 2px solid;
+  border-color: #1b97a1;
+  color: #1b97a1;
+  background-color: #97dae0;
   border-radius: 5px;
   box-shadow: 2px;
 }
 
 #falfast {
   border: 2px solid;
-  border-color: #04aa6d;
+  border-color: #7b77f2;
+  border-radius: 5px;
+  box-shadow: 2px;
+}
+
+#falfast:hover {
+  border: 2px solid;
+  border-color: #7b77f2;
+  color: #7b77f2;
+  background-color: #c7c5f9;
   border-radius: 5px;
   box-shadow: 2px;
 }
 
 #makeprompt {
-  /* background-color: aqua; */
   border: 2px solid;
-  border-color: #04aa6d;
+  border-color: #dd4f74;
   border-radius: 5px;
   box-shadow: 2px;
-  padding: 8px 16px;
-  margin-top: 5%;
+}
+
+#makeprompt:hover {
+  border: 2px solid;
+  border-color: #dd4f74;
+  color: #dd4f74;
+  background-color: #f4bbca;
+  border-radius: 5px;
+  box-shadow: 2px;
+}
+
+#resultText {
+  width: 45vw;
+  height: 25vh;
+  overflow: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
 #output {
@@ -91,14 +160,6 @@ button {
 }
 
 #prompt-history {
-  width: 40vw;
-  height: 20vh;
-  overflow: auto;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-#resultText {
   width: 40vw;
   height: 20vh;
   overflow: auto;

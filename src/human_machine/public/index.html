@@ -2,14 +2,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Conversations with machines</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <div class="main-container">
-      <h1>Conversations with machines</h1>
-      <div class="functionality-container">
+      <!-- <div class="functionality-container"> -->
         <div class="user-inputs">
+          <h1>Conversations with machines</h1>
+      <h1>Conversations with machines</h1>
+      <h1>Conversations with machines</h1>
+      <h1>Conversations with machines</h1>
+      <br>
+          <p>What kind of human machine interfaces do you want to redesign?</p>
+          <br>
           <div class="prompt-input-field">
             <input
               id="prompt"
@@ -21,15 +27,16 @@
           <div class="machine_generators">
             <button id="dalle">Machine 1</button>
             <button id="fal">Machine 2</button>
-            <button id="falfast">Machine 3</button>
+            <!-- <button id="falfast">Machine 3</button> -->
+            <button id="makeprompt">Make Prompt</button>
           </div>
-
-          <button id="makeprompt">Make Prompt</button>
+          <br>
+          <div id="resultText"></div>
         </div>
         <div class="machine-outputs">
           <div id="output" class="p-4"></div>
+          <!-- <button id="downloadImage">Download Image</button> -->
           <div id="prompt-history" class="p-4"></div>
-          <div id="resultText"></div>
         </div>
       </div>
     </div>
@@ -37,107 +44,95 @@
     <script>
       const promptElement = document.getElementById("prompt");
       const dalleButton = document.getElementById("dalle");
+
       dalleButton.addEventListener("click", () => {
-        const prompt = promptElement.value || "no prompt";
-        fetch(`/api/dalle?prompt=${prompt}`)
+      const prompt = promptElement.value || "no prompt";
+
+      fetch(`/api/dalle?prompt=${prompt}`)
           .then((response) => response.text())
           .then((url) => {
-            const e = document.createElement("div");
-            const machinePrompt = document.createElement("div");
-            const promptText = document.createElement("div"); // Create a new div for prompt text
+              const e = document.createElement("div");
+              const machinePrompt = document.createElement("div");
+              const promptText = document.createElement("div");
 
-            e.innerHTML = `
-            <div class="mb-4">
-              <img class="block" src="${url}" style="width: 20vw; height: auto; display: block; margin: auto;"/>
-            </div>
-            `;
-            machinePrompt.innerHTML = ` 
-            <div class="mb-4">
-              <div class="p-4 bg-gray-500 text-white w-1/2">${prompt}</div>
-            </div>
-            `;
-            promptText.innerHTML = `${prompt}`; // Set the prompt text in the new div
+              e.innerHTML = `
+              <div class="mb-4">
+                <img class="block" src="${url}" style="width: 40vw; height: auto; display: block; margin: auto;"/>
+              </div>
+              `;
+              machinePrompt.innerHTML = ` 
+              <div class="mb-4">
+                <div class="p-4 bg-gray-500 text-white w-1/2">${prompt}</div>
+              </div>
+              `;
+              promptText.innerHTML = `${prompt}`;
 
-            const output = document.getElementById("output");
-            const promptList = document.getElementById("prompt-history");
+              const output = document.getElementById("output");
+              const promptList = document.getElementById("prompt-history");
 
-            output.insertBefore(e, output.firstChild);
-            promptList.insertBefore(promptText, promptList.firstChild); // Append the prompt text to the prompt history div
-            // promptList.insertBefore(machinePrompt, promptList.firstChild);
+              output.insertBefore(e, output.firstChild);
+              promptList.insertBefore(promptText, promptList.firstChild);
           })
           .catch((error) => {
-            console.error("Error:", error);
+              console.error("Error:", error);
           });
-        fetch(`/api/gpt??prompt=${promptElement.value}`)
+
+      fetch(`/api/gpt?prompt=${promptElement.value}`) // Removed extra question mark here
           .then((response) => response.text())
           .then((responseText) => {
-            const responseElement = document.createElement("p");
-            responseElement.innerText = responseText;
-            document.body.appendChild(responseElement);
+              const responseElement = document.createElement("p");
+              responseElement.innerText = responseText;
+
+              const existingDiv = document.getElementById("resultText");
+
+              // Append the responseElement as a child of the existing div
+              resultText.appendChild(responseElement);
           });
       });
 
       const falButton = document.getElementById("fal");
       falButton.addEventListener("click", () => {
-        fetch(`/api/fal?prompt=${promptElement.value}`)
+      const prompt = promptElement.value || "no prompt"; // Declare prompt here
+
+      fetch(`/api/fal?prompt=${prompt}`)
           .then((response) => response.text())
           .then((url) => {
-            const e = document.createElement("div");
-            const machinePrompt = document.createElement("div");
+              const e = document.createElement("div");
+              const machinePrompt = document.createElement("div");
+              const promptTextElement = document.createElement("div"); // Changed variable name to promptTextElement
 
-            e.innerHTML = `
-            <div class="mb-4">
-              <img class="block" src="${url}" style="width: 20vw; height: auto; display: block; margin: auto;/>
-            </div>
-            `;
-            machinePrompt.innerHTML = ` <div class="mb-4">
-              <div class="p-4 bg-gray-500 text-white w-1/2">${prompt}</div>
+              e.innerHTML = `
+              <div class="mb-4">
+                  <img class="block" src="${url}" style="width: 40vw; height: auto; display: block; margin: auto;"/>
               </div>
               `;
-            const output = document.getElementById("output");
-            const promptList = document.getElementById("prompt-history");
+              machinePrompt.innerHTML = ` 
+              <div class="mb-4">
+                  <div class="p-4 bg-gray-500 text-white w-1/2">${prompt}</div>
+              </div>
+              `;
+              promptTextElement.innerHTML = `${prompt}`; // Changed variable name to promptTextElement
 
-            output.insertBefore(e, output.firstChild);
-            promptList.insertBefore(machinePrompt, promptList.firstChild);
+              const output = document.getElementById("output");
+              const promptList = document.getElementById("prompt-history");
+
+              output.insertBefore(e, output.firstChild);
+              promptList.insertBefore(promptTextElement, promptList.firstChild); // Changed variable name to promptTextElement
+          })
+          .catch((error) => {
+              console.error("Error:", error);
           });
-        fetch(`/api/gpt??prompt=${promptElement.value}`)
+
+      fetch(`/api/gpt?prompt=${prompt}`) // Removed extra question mark here
           .then((response) => response.text())
           .then((responseText) => {
-            const responseElement = document.createElement("p");
-            responseElement.innerText = responseText;
+              const responseElement = document.createElement("p");
+              responseElement.innerText = responseText;
 
-            const existingDiv = document.getElementById("resultText");
+              const existingDiv = document.getElementById("resultText");
 
-            // Append the responseElement as a child of the existing div
-            resultText.appendChild(responseElement);
-          });
-      });
-
-      const falfastButton = document.getElementById("falfast");
-      falfastButton.addEventListener("click", () => {
-        fetch(`/api/falfast?prompt=${promptElement.value}`)
-          .then((response) => response.text())
-          .then((url) => {
-            const e = document.createElement("div");
-
-            e.innerHTML = `
-            <div class="mb-4">
-              <img class="block" src="${url}" />
-              <div class="p-4 bg-gray-500 text-white w-1/2">${
-                promptElement.value || "no prompt"
-              }</div>
-            </div>
-            `;
-            const output = document.getElementById("output");
-
-            output.insertBefore(e, output.firstChild);
-          });
-        fetch(`/api/gpt??prompt=${promptElement.value}`)
-          .then((response) => response.text())
-          .then((responseText) => {
-            const responseElement = document.createElement("p");
-            responseElement.innerText = responseText;
-            document.body.appendChild(responseElement);
+              // Append the responseElement as a child of the existing div
+              resultText.appendChild(responseElement);
           });
       });
 
@@ -188,6 +183,22 @@
       function pick(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
       }
+
+      // const downloadButton = document.getElementById("downloadImage");
+      // downloadButton.addEventListener("click", () => {
+      //   const imageUrl = document
+      //     .getElementById("output")
+      //     .querySelector("img").src;
+
+      //   const link = document.createElement("a");
+      //   link.href = imageUrl;
+      //   link.download = "generated_image.png";
+      //   document.body.appendChild(link);
+
+      //   link.click();
+
+      //   document.body.removeChild(link);
+      // });
     </script>
   </body>
 </html>
