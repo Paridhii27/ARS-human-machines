@@ -26,7 +26,7 @@
           </div>
           <div class="machine_generators">
             <button id="dalle">Machine 1</button>
-            <button id="dalle">Machine 2</button>
+            <button id="dalleTwo">Machine 2</button>
             <!-- <button id="falfast">Machine 3</button> -->
             <button id="makeprompt">Make Prompt</button>
           </div>
@@ -90,11 +90,11 @@
           });
       });
 
-      const falButton = document.getElementById("fal");
+      const falButton = document.getElementById("dalleTwo");
       falButton.addEventListener("click", () => {
       const prompt = promptElement.value || "no prompt"; // Declare prompt here
 
-      fetch(`/api/fal?prompt=${prompt}`)
+      fetch(`/api/dalle?prompt=${prompt}`)
           .then((response) => response.text())
           .then((url) => {
               const e = document.createElement("div");
